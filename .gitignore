@@ -1,0 +1,12 @@
+# Ignore Django migrations
+**/migrations/
+
+
+
+# Ignore development server settings
+*.pyc
+__pycache__/
+*.log
+
+# Ignore local development settings
+local_settings.py
