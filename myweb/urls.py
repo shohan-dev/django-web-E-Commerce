@@ -17,10 +17,13 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
+from accounts.views import activate_email
 from ecom.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("",include('ecom.urls')),
     path("auth/",include('accounts.urls')),
+    path('activate/<email_token>/' , activate_email , name="activate_email"),
+
 ]

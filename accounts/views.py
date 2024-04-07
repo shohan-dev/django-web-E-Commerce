@@ -13,7 +13,9 @@ def login_page(request):
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
+        print(password)
         user_obj = User.objects.filter(username = email)
+        print(user_obj)
 
         if not user_obj.exists():
             messages.warning(request, 'Account not found.')
@@ -25,6 +27,7 @@ def login_page(request):
             return HttpResponseRedirect(request.path_info)
 
         user_obj = authenticate(username = email , password= password)
+        print(user_obj)
         if user_obj:
             login(request , user_obj)
             return redirect('/')
@@ -49,7 +52,6 @@ def register_page(request):
             messages.warning(request, 'Email is already taken.')
             return HttpResponseRedirect(request.path_info)
 
-        print(email)
 
         user_obj = User.objects.create(email = email , username = email)
         user_obj.set_password(password)
@@ -62,6 +64,12 @@ def register_page(request):
 
 
     return render(request ,'signup.html')
+
+
+def logout_view(request):
+    logout(request)
+    # Redirect to a success page
+    return redirect('/')
 
 
 
