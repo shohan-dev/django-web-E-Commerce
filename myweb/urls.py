@@ -17,6 +17,7 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls.static import static
 from accounts.views import activate_email
 from ecom.views import *
 
@@ -26,4 +27,4 @@ urlpatterns = [
     path("auth/",include('accounts.urls')),
     path('activate/<email_token>/' , activate_email , name="activate_email"),
 
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
